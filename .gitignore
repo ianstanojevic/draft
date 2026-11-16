@@ -1,0 +1,9 @@
+# Lokalt, inte i repot
+PUBLISH.md
+RELEASE_NOTES.md
+_stage/
+*.exe
+*.zip
+*.json
+*.log
+__pycache__/
