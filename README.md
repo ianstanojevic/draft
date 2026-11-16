@@ -2,72 +2,140 @@
 
 # D R A F T
 
-**Champion select assistant for League of Legends — built on measured win rates, checked against 28,000 real ranked games.**
+### Pick the right champion in champ select.
 
-[**Download for Windows**](../../releases/latest) · Windows 10/11 · no install · free
+**[⬇ Download for Windows](../../releases/latest)**
 
-<img src="docs/draft-main.png" width="640" alt="Draft — pick suggestions, team damage and win chance">
+Free · no install · Windows 10/11
+
+<br>
+
+<img src="docs/01-suggestions.png" width="760" alt="Draft ranks the best picks while you draft">
 
 </div>
 
----
+<br>
 
-## What it does
+## What is it?
 
-Open Draft next to the League client. It reads champ select by itself and ranks the best picks for your role, using the champions that are already picked and banned. Every number in it is a measured win rate — click any number to see exactly where it comes from.
+Draft sits next to League of Legends. When you enter champ select it reads the draft by itself and tells you which champions to pick.
 
-- **Pick suggestions** ranked by *Score* — your expected win rate for each champion given the full draft. 50 means the average pick in your role.
-- **Win chance** for your whole team from what is picked so far: base strength, matchups, synergies, team damage mix, side, and how the game plays out if it ends early or runs long.
-- **Dodge advice** when a draft is bad enough that dodging beats playing it.
-- **Team damage mix** — all-AD or all-AP teams win less. Draft counts that for you.
-- **Your experience** (optional, off by default): how much you actually played each champion this ranked season, with your own win rate on it.
-- **Runes and builds** for every pick, with pick rates and honest colouring — a win rate is only green or red when it is clearly different from the slot's average, not when it rests on 38 games. One click sends the runes to your client.
-- **Your pool:** filter the list down to champions you play.
+Every number comes from real games. Nothing is guessed.
+
+<br>
+
+## Best picks, ranked
+
+Every champion gets a **Score**: your expected win rate with that pick, given who is already picked and banned. **50 is an average pick.** The list updates by itself as the draft changes.
+
+<br>
+
+## Click any number to see why
 
 <div align="center">
-<img src="docs/win-chance.png" height="520" alt="Win chance breakdown"> &nbsp; <img src="docs/build.png" height="520" alt="Recommended build">
+<img src="docs/02-why-this-pick.png" width="380" alt="Why this pick">
+&nbsp;&nbsp;
+<img src="docs/03-win-chance.png" width="380" alt="Win chance">
 </div>
 
-## How good is it?
+**Left:** where a pick's Score comes from. **Right:** your team's chance to win, from everything picked so far.
 
-Honest numbers. The model was tested the hard way: statistics from the *previous* patch (16.21) predicting real ranked matches on the *next* one (16.22) — 28,072 Emerald–Master games on EUW. The weights were then chosen on most of them and checked on **3,680 games collected afterwards** that played no part in choosing them:
+<br>
 
-| On the 3,680 unseen games | Result |
-|---|---|
-| +1 Score | ≈ **+1.0 pp** win rate (1.02 ± 0.10) |
-| Predicts the winner | **56 %** of matches |
-| Team with a ≥ 5 pp predicted edge | won **59.7 %** |
+## Win chance for the whole draft
 
-And on the 25,000 games the weights were tuned on: a predicted win chance of 37 % actually won 37 %, and 60 % won 61 %.
+The bar next to the bans shows how your team is doing. It looks at champion strength, matchups, synergies, damage mix, and which side you are on. Click it for the full breakdown.
 
-**What that means for you:** a draft decides a small part of a game. Following Draft is worth roughly **1–3 percentage points** of win rate — a few extra wins per hundred games, not a different game. It does not replace knowing your champion.
+<br>
+
+## Dodge advice
+
+If the draft is bad enough that dodging beats playing it, Draft tells you.
+
+<div align="center">
+<img src="docs/06-dodge.png" width="760" alt="Dodge advice">
+</div>
+
+<br>
+
+## Runes and builds
+
+Click a champion to see the best runes, items and skill order. Colours only show up when a difference is real, so a lucky 63 % on 38 games does not look like a sure thing.
+
+<div align="center">
+<img src="docs/04-build.png" width="760" alt="Recommended build">
+</div>
+
+<br>
+
+## Builds against your lane opponent
+
+Switch to a matchup and the build changes to what works against that champion.
+
+<div align="center">
+<img src="docs/05-build-matchup.png" width="760" alt="Build against a specific opponent">
+</div>
+
+<br>
+
+## Ban suggestions
+
+Not sure what to ban? One click shows the champions that hurt most in your role.
+
+<div align="center">
+<img src="docs/07-ban-suggestions.png" width="760" alt="Ban suggestions">
+</div>
+
+<br>
+
+## Your own champion pool
+
+Add the champions you actually play, and the list only shows those.
+
+<div align="center">
+<img src="docs/08-your-pool.png" width="760" alt="Pool filter">
+</div>
+
+<br>
+
+## Settings
+
+<div align="center">
+<img src="docs/09-settings.png" width="420" alt="Settings">
+</div>
+
+*Your champion experience* is off by default. Turn it on to count how much you played each champion this ranked season.
+
+<br>
 
 ## Install
 
 1. Download `Draft-v2.2-windows.zip` from the [latest release](../../releases/latest) and unzip it.
 2. Run `Draft.exe`.
-3. Windows may say *"Windows protected your PC"* because the file is not code-signed. Click **More info → Run anyway**.
-4. Start League. Draft connects by itself when you enter champ select — there is nothing to log in to.
+3. Windows may say *"Windows protected your PC"*. Click **More info → Run anyway**. (The file is not code-signed.)
 
-Check the download if you like: the SHA-256 of `Draft.exe` is in the release notes.
+Start League. Draft connects by itself when you enter champ select.
 
-## Settings (⚙)
+<br>
 
-- **Build quality floor** — runes/items always come from Emerald+ data.
-- **Your champion experience** — adds how often you played each champion this ranked season. With a [Riot API key](https://developer.riotgames.com) in the environment variable `DRAFT_RIOT_API_KEY` it reads your whole ranked season; without one it uses your last 20 games. Off by default.
-- **Clear cache** — forces fresh data after a new patch.
+## Does it work?
 
-## Privacy
+It was tested on 28,072 real ranked games, and checked again on 3,680 games it had never seen.
 
-Draft runs locally. It talks to the League client on your own computer, to lolalytics for statistics, and to Riot's Data Dragon for icons. With *Your champion experience* on and an API key set, it also asks Riot for your ranked games. Settings and caches live in your home folder (`.draft_tool.json`, `.draft_cache.json`, `.draft_season.json`). Nothing is sent to me.
+- **+1 Score is about +1 % win rate.**
+- It predicts the winner of **56 %** of games.
+- Teams with a big predicted edge won **59.7 %**.
+
+Following Draft is worth roughly **1–3 % more wins**. It will not win games for you, but it picks the right champion more often than guessing.
+
+<br>
 
 ## Good to know
 
-- Statistics come from [lolalytics](https://lolalytics.com). If they change their site, Draft can stop loading data until it is updated.
-- Weights were calibrated on Emerald and above; they are used for every tier.
-- Opponents' roles are guessed until they show — change a role by clicking its chip.
-- The dodge advice assumes 5 LP for a dodge and ±20 LP per game. Those two numbers are assumptions, not measurements.
+- Statistics come from [lolalytics](https://lolalytics.com). If they change their site, Draft may need an update.
+- Draft runs on your computer. It sends nothing to anyone.
+- Weights were measured on Emerald and above. Other ranks work, but with less proof.
 
-## Disclaimer
+<br>
 
-Draft isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+<sub>Draft isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</sub>
